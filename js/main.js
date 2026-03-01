@@ -1,6 +1,8 @@
 addEventListener('load', function() {
     document.getElementById('play').addEventListener('click', 
     function(){
+		let alies = prompt("Introdueix el teu nom: ");
+		console.log("Alies: " ,alies);
         alert("Comença la partida");
     });
 
