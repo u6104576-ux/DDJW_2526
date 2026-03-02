@@ -1,7 +1,10 @@
 addEventListener('load', function() {
     document.getElementById('play').addEventListener('click', 
     function(){
-        window.location.assign("./html/game.html");
+		let alies = prompt("Introdueix el teu nom: ");
+		console.log("Alies: " ,alies);
+        alert("Comença la partida");
+		window.location.assign("./html/game.html");
     });
 
     document.getElementById('options').addEventListener('click', 
