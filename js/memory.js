@@ -45,17 +45,22 @@ export function clickCard(indx){
                 alert(`Has guanyat amb ${game.score} punts!!!!`);
                 window.location.assign("../");
             }
+			game.lastCard = null;
         }
         else {
-            goBack(indx);
-            goBack(game.lastCard);
-            game.score -= 25;
-            if (game.score <= 0){
-                alert ("Has perdut");
-                window.location.assign("../");
-            }
+			setTimeout(() => {
+				goBack(indx);
+				goBack(game.lastCard);
+				game.score -= 25;
+				if (game.score <= 0){
+					alert ("Has perdut");
+					window.location.assign("../");
+				}
+				game.lastCard = null;
+			}, 1000)
+            
         }
-        game.lastCard = null;
+        
     }
 }
 

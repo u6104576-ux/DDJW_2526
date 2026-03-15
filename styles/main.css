@@ -14,3 +14,39 @@ button.center{
 	color:red;
 	text-align: center;
 }
+
+body{
+    background-color: lightgrey;
+}
+
+button {
+    color: red;
+    background-color: aquamarine;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:azure
+}
+
+button:active {
+    background-color: cyan;
+}
+
+button:focus {
+    background-color: cyan;
+}
+
+h1#title {
+    padding: 15px;
+    border-radius: 30px;
+    flex-direction: center;
+    background-color: aquamarine;
+}
+
+div#game {
+	display: flex;
+    justify-content: center;
+}
