@@ -45,3 +45,8 @@ h1#title {
     flex-direction: center;
     background-color: aquamarine;
 }
+
+div#game {
+	display: flex;
+    justify-content: center;
+}

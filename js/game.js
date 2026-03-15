@@ -25,5 +25,4 @@ export function clickOn(idx){
         clickCard(idx);
     });
 }
-
 startGame();
