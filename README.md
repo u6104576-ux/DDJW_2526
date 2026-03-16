@@ -1,6 +1,13 @@
 
-<h1> Treball Individual/DDJW_2525 </h1> 
+<h1> Treball Individual/DDJW_2525/Nil Portas</h1> 
 
+ --> [Introducció](#introducció).
+
+ --> [Descripció del disseny del joc](#descripció-del-disseny-del-joc).
+
+ --> [Descripció de les parts més revellants de la implementació](#descripció-de-les-parts-més-revellants-de-la-implementació).
+
+ --> [Conclusions i problemes trobats](#conclusions-i-problemes-trobats).
  
 ## Introducció
 
@@ -49,10 +56,7 @@
 
 
 
-Introducció: [Link Text](#introduccio).
-Descripció del disseny del joc: [Link Text](#descripcio-del-disseny-del-joc).
-Descripció de les parts més revellants de la implementació: [Link Text](#descripcio-de-les-parts-mes-revellants-de-la-implementacio).
-Conclusions i problemes trobats: [Link Text](#conclusions-i-problemes-trobats)
+
 
 
 
