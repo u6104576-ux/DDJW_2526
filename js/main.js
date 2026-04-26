@@ -1,6 +1,5 @@
 import {$} from "../library/jquery-4.0.0.slim.module.min.js";
 
-// Obtenim les dades del index
 var play = $('#play');
 var options = $('#options');
 var saves = $('#saves');
