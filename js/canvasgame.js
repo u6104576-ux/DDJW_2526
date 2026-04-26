@@ -36,7 +36,6 @@ function start(){
                     y >= this.position.yMin && y <= this.position.yMax;
         }
     });
-    // Vincular events
     game.on('click', function(e){
         e_click.click = true;
         e_click.x = e.pageX - this.offsetLeft;
