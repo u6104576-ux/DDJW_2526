@@ -47,6 +47,8 @@ h1#title {
 }
 
 div#game {
-	display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
     justify-content: center;
+    gap: 10px;
 }

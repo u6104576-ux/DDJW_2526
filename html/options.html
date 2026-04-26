@@ -2,19 +2,36 @@
 <html>
 	<head>
         <script src="../js/options.js" type="module"></script>
+		<link rel="stylesheet" href="../styles/main.css">
 		<title> Memory - Opcions </title>
 	</head>
 	<body>
 		<h1>Opcions</h1>
-        <label for="pairs">Número de cartes</label>
-        <input type="number" id="pairs" value="2" min="2" max="6">
-        <label for="dif">Dificultat</label>
-        <select id="dif">
-            <option value="easy">Baixa</option>
-            <option value="normal" selected>Normal</option>
-            <option value="hard">Alta</option>
-        </select>
+		<div name="mode_joc">
+			<label for="select">Número de cartes</label>
+			<select id="select">
+				<option id="pairs" value="2" min="2" max="6" selected> Parelles </option>
+				<option id="three" value="3" min="3" max="9"> Trios </option>
+				<option id="four" value="4" min="4" max="12"> Quartets </option>
+			</select>
+		</div>
+		<div name="dificultat">
+			<label for="dif">Dificultat</label>
+			<select id="dif">
+				<option value="easy">Baixa</option>
+				<option value="normal" selected>Normal</option>
+				<option value="hard">Alta</option>
+			</select>
+		</div>
+		<div name="mod">
+			<label for="mode">Mode</label>
+			<select id="mode">
+				<option value="normal" selected>Normal</option>
+				<option value="infinite">Infinit</option>
+			</select>
+		</div>
         <button id="default">Per defecte</button>
         <button id="apply">Aplicar</button>
+		<button id="exit">Tornar</button>
 	</body>
 </html>

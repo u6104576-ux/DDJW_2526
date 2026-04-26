@@ -11,9 +11,6 @@ gameItems.forEach(function (value, idx)
     card.on('click', function(){
         clickCard(idx);
     });
-}
-
-startGame();
     card.attr('src', value);                  // Modify values   
     initCard(val => card.attr('src', val));        
 });
