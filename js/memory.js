@@ -68,7 +68,7 @@ const resources = [
 		let temp = [];
 		base.forEach(card => {
 			for (let i = 0; i < this.selection; i++) {
-				temp.push({ ...card }); // copia para evitar referencias raras
+				temp.push({ ...card });
 			}
 		});
 		shuffe(temp);
@@ -83,19 +83,18 @@ const resources = [
 	start: function(){
 		this.ready = 0; 
 		this.gameLocked = true;
-		// Mostramos todas las cartas al inicio
 		    for (let i = 0; i < this.items.length; i++) {
-			this.goFront(i); // Esto usa el callback de initCard para dibujar en el Canvas
+			this.goFront(i); 
 		}
 		setTimeout(() => {
 			let i = 0;
 			let interval = setInterval(() => {
-				this.goBack(i); // Vuelve a tapar la carta en el Canvas
+				this.goBack(i);
 				i++;
 				if (i >= this.items.length) {
 					clearInterval(interval);
 					this.gameLocked = false;
-					this.ready = this.items.length; // Desbloquea el clic
+					this.ready = this.items.length;
 				}
 			}, 120);
 		}, 2000);
@@ -189,7 +188,6 @@ export function getGameItems() {
 }
 export function selectCards(){	
 	game.select();
-	//gameItems = game.items;
 }
 export function clickCard(indx){
 	game.click(indx);
