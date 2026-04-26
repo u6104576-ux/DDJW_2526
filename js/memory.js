@@ -1,9 +1,10 @@
-	const resources = [
-	'../resources/cb.png', '../resources/co.png',
-	'../resources/sb.png', '../resources/so.png',
-	'../resources/tb.png', '../resources/to.png'
+import { renderGame } from "./game.js";
+const resources = [
+	{ id: 'co', src: '../resources/co.svg' }, { id: 'cb', src: '../resources/cb.svg' },
+	{ id: 'to', src: '../resources/to.svg' }, { id: 'tb', src: '../resources/tb.svg' },
+	{ id: 'so', src: '../resources/so.svg' }, { id: 'sb', src: '../resources/sb.svg' }
 	];
-	const back = '../resources/back.png';
+	const back = '../resources/back.svg';
 	const StateCard = Object.freeze({
 	DISABLE: 0,
 	ENABLE: 1,
@@ -35,7 +36,7 @@
 	},
 	goFront: function(idx){
 	if (this.setValue && this.setValue[idx]) {
-		this.setValue[idx](this.items[idx]);
+		this.setValue[idx](this.items[idx].src);
 	}
 		this.states[idx] = StateCard.DISABLE;
 	},
@@ -62,11 +63,14 @@
 		}
 	},
 	createLevel: function(){
+		this.setValue = [];
 		let base = resources.slice(0, this.pairs);
 		let temp = [];
-		for (let i = 0; i < this.selection; i++) {
-			temp = temp.concat(base);
-		}
+		base.forEach(card => {
+			for (let i = 0; i < this.selection; i++) {
+				temp.push({ ...card }); // copia para evitar referencias raras
+			}
+		});
 		shuffe(temp);
 		this.items = temp;
 		this.states = temp.map(() => StateCard.ENABLE);
@@ -74,24 +78,24 @@
 		this.selected = [];
 		this.lastCard = null;
 		this.ready = 0;
+		console.log(this.items);
 	},
 	start: function(){
-		this.ready = this.items.length;
+		this.ready = 0; 
 		this.gameLocked = true;
-		for (let i = 0; i < this.items.length; i++) {
-			let el = document.getElementById(String(i));
-			if (el) el.src = this.items[i];
+		// Mostramos todas las cartas al inicio
+		    for (let i = 0; i < this.items.length; i++) {
+			this.goFront(i); // Esto usa el callback de initCard para dibujar en el Canvas
 		}
 		setTimeout(() => {
 			let i = 0;
 			let interval = setInterval(() => {
-				let el = document.getElementById(String(i));
-				if (el) el.src = back;
-				this.states[i] = StateCard.ENABLE;
+				this.goBack(i); // Vuelve a tapar la carta en el Canvas
 				i++;
 				if (i >= this.items.length) {
 					clearInterval(interval);
 					this.gameLocked = false;
+					this.ready = this.items.length; // Desbloquea el clic
 				}
 			}, 120);
 		}, 2000);
@@ -101,8 +105,8 @@
 		this.goFront(indx);
 		this.selected.push(indx);
 		if (this.selected.length === this.selection) {
-			let firstValue = this.items[this.selected[0]];
-			let allEqual = this.selected.every(i => this.items[i] === firstValue);
+			let firstValue = this.items[this.selected[0]].id;
+			let allEqual = this.selected.every(i => this.items[i].id === firstValue);
 			if (allEqual) {
 				this.selected.forEach(i => {
 					this.states[i] = StateCard.DONE;
@@ -128,6 +132,7 @@
 		}
 	},
 	nextLevel: function(){
+		this.setValue = [];
 		this.level++;
 		this.pairs++;
 		this.penalty += 5;
@@ -135,6 +140,7 @@
 		this.selected = [];
 		this.lastCard = null;
 		this.createLevel();
+		renderGame();
 		this.start();
 		alert("Nivell " + this.level);
 	},
@@ -176,23 +182,25 @@
 	}
 };
 function shuffe(arr){
-arr.sort(() => Math.random() - 0.5);
+	arr.sort(() => Math.random() - 0.5);
 }
-export var gameItems;
-export function selectCards(){
-game.select();
-gameItems = game.items;
+export function getGameItems() {
+    return game.items;
+}
+export function selectCards(){	
+	game.select();
+	//gameItems = game.items;
 }
 export function clickCard(indx){
-game.click(indx);
+	game.click(indx);
 }
 export function startGame(){
-game.start();
+	game.start();
 }
-export function initCard(callback){
-if (!game.setValue) game.setValue = [];
-game.setValue.push(callback);
+export function initCard(index, callback){
+    if (!game.setValue) game.setValue = [];
+    game.setValue[index] = callback;
 }
 export function saveGame(){
-game.save();
+	game.save();
 }
